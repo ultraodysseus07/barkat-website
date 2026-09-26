@@ -12,6 +12,8 @@
 
 ## Verified locally
 
+Live Netlify verification (2026-09-26): all 22 Chrome browser tests passed against the public HTTPS site, including centered/green slider arrows and Back/Next Pour flow. All 13 routes and 13 internal destinations passed with no missing images, HTTP errors or browser exceptions. Security headers confirmed. GitHub main pushed successfully. Public visitor access enabled; the GitHub repository remains private.
+
 - Production build and TypeScript checks pass.
 - 2 unit tests pass (malformed bag data and atomic bundle/bounds logic).
 - 21 Chrome browser tests pass: bundle combinations/totals, persistence/cross-tab, keyboard catalog slider and arrow buttons, all vessel price/discount calculations/add buttons, dialogs, search/filter/reset/URL, finder/gallery, standalone and home-embedded experiences, contact preview blocking, navigation, reduced motion, enlarged text, corrupted/blocked storage and no-JS content.

@@ -1,22 +1,31 @@
 import { test, expect } from "@playwright/test";
-test("product arrows are centered, round and turn Barkat green",async({page})=>{
-  for(const width of [320,1440]){
-    await page.setViewportSize({width,height:1000});
+test("product arrows are centered, round and turn Barkat green", async ({
+  page,
+}) => {
+  for (const width of [320, 1440]) {
+    await page.setViewportSize({ width, height: 1000 });
     await page.goto("/");
     await expect(page.locator("header .bag-btn")).toBeEnabled();
-    const next=page.getByRole("button",{name:"Next products"});
+    const next = page.getByRole("button", { name: "Next products" });
     await next.scrollIntoViewIfNeeded();
-    const arrow=await next.boundingBox(),row=await page.locator(".slider-shell").boundingBox();
+    const arrow = await next.boundingBox(),
+      row = await page.locator(".slider-shell").boundingBox();
     expect(arrow!.width).toBeGreaterThanOrEqual(48);
     expect(arrow!.width).toBe(arrow!.height);
-    expect(Math.abs(arrow!.y+arrow!.height/2-(row!.y+row!.height/2-11))).toBeLessThan(2);
-    expect(arrow!.x+arrow!.width).toBeLessThanOrEqual(width);
+    expect(
+      Math.abs(arrow!.y + arrow!.height / 2 - (row!.y + row!.height / 2 - 11)),
+    ).toBeLessThan(2);
+    expect(arrow!.x + arrow!.width).toBeLessThanOrEqual(width);
     await next.hover();
-    await expect(next).toHaveCSS("background-color","rgb(163, 191, 24)");
+    await expect(next).toHaveCSS("background-color", "rgb(163, 191, 24)");
     await expect(page.locator(".section-heading .slider-arrow")).toHaveCount(0);
   }
-  await page.getByRole("button",{name:"Pearl wax shades",exact:true}).click();
-  await expect(page.getByRole("button",{name:"Next products"})).toBeDisabled();
+  await page
+    .getByRole("button", { name: "Pearl wax shades", exact: true })
+    .click();
+  await expect(
+    page.getByRole("button", { name: "Next products" }),
+  ).toBeDisabled();
 });
 test("slider chips, keyboard and arrow buttons", async ({ page }) => {
   await page.goto("/");
